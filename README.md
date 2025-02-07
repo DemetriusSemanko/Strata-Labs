@@ -17,3 +17,35 @@ The main repo for Team 9's Spring 2025 GitHub repo
     - Back-end
       - Database
       - Authentication?
+
+# Skills
+## Demetrius
+- Java, Python, C/C++
+- Linux CLI experience
+## Evan
+- Java
+- Linux CLI experience
+## Nooh
+- Java, C, Python
+- Linux CLI experience
+## Jay
+- Java, Python
+- Linux full-time
+
+# Assignment
+## Front-end
+### Webpages
+- Login page
+- Internal pages, hidden by login
+## Back-end
+### Database
+- Storing records for forum posts
+### Authentication
+- Authentication of accounts, verifying accounts to post
+
+
+## Deliverable 1
+- No formal 5 minute presentation
+- Ngo will bring up our deliverable document, give us feedback, and to elaborate on our visions
+- Chapter 1
+- Chapter 2
