@@ -25,12 +25,12 @@ The main repo for Team 9's CSC 468 full-stack cloud project
 ## Evan
 - Java
 - Linux CLI experience
-## Nooh
-- Java, C, Python
-- Linux CLI experience
 ## Jay
 - Java, Python
 - Linux full-time
+## Nooh
+- Java, C, Python
+- Linux CLI experience
 
 # Assignment
 ## Front-end
