@@ -1,8 +1,8 @@
 # Strata-Labs
-The main repo for Team 9's Spring 2025 GitHub repo
+The main repo for Team 9's CSC 468 full-stack cloud project
 
 
-## Project ideas
+# Project idea
 - A web-forum
   - Accounts
   - Posts and replies
