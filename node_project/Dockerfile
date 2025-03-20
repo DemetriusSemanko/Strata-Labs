@@ -8,6 +8,8 @@ COPY package*.json ./
 
 USER node
 
+RUN npm install mongoose
+RUN npm install ejs
 RUN npm install
 
 COPY --chown=node:node . .
