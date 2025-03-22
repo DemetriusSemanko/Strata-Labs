@@ -1,0 +1,31 @@
+# Use strata/labs as user/password credentials
+
+# The 'version' attribute is obsolete and ignored,
+# so it is commented out
+# version: '3.1'
+
+services:
+
+    mongo:
+        image: mongo
+        restart: always
+        container_name: mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: strata
+            MONGO_INITDB_ROOT_PASSWORD: labs     
+
+    mongo-express:
+        image: mongo-express
+        restart: always
+        ports:
+            - 8081:8081
+        environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: strata
+            ME_CONFIG_MONGODB_ADMINPASSWORD: labs
+            ME_CONFIG_MONGODB_URL: mongodb://strata:labs@mongo:27017/
+            ME_CONFIG_BASICAUTH: false
+    
+    node_project:
+        build: node_project
+        ports: 
+            - 8000:8000
