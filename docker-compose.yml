@@ -1,0 +1,33 @@
+services:
+    frontend:
+        image: nginx:latest
+        container_name: forum_frontend
+        volumes:
+            - ./frontend:/usr/share/nginx/html
+        ports:
+            - "8080:80"
+        depends_on:
+            - api
+
+    api:
+        image: node:18
+        container_name: forum_api
+        working_dir: /app
+        volumes:
+            - ./api:/app
+        ports:
+            - "3000:3000"
+        depends_on:
+            - database
+        command: ["npm", "start"]
+
+    database:
+        image: mongo:4.4
+        container_name: forum_db
+        volumes:
+            - mongo_data:/data/db
+        ports:
+            - "27017:27017"
+
+volumes:
+    mongo_data:
