@@ -12,7 +12,7 @@ services:
         container_name: mongo
         environment:
             MONGO_INITDB_ROOT_USERNAME: strata
-            MONGO_INITDB_ROOT_PASSWORD: labs     
+            MONGO_INITDB_ROOT_PASSWORD: labs   
 
     mongo-express:
         image: mongo-express
