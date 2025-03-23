@@ -12,7 +12,11 @@ services:
         container_name: mongo
         environment:
             MONGO_INITDB_ROOT_USERNAME: strata
-            MONGO_INITDB_ROOT_PASSWORD: labs   
+            MONGO_INITDB_ROOT_PASSWORD: labs  
+
+# if you wanted to shell into mongo, you could do the following below
+# docker exec -it CONTAINER_ID mongosh --host LOCALHOST_OR_A_DIFF_ADDRESS -u strata -p labs --authenticationDatabase admin sharkinfo 
+# Otherwise, just use mongo-express' open port to interact with an admin panel over the browser
 
     mongo-express:
         image: mongo-express

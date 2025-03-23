@@ -14,4 +14,13 @@ router.get('/getshark', function(req, res) {
     shark.list(req,res);
 });
 
+router.get('/sharks', async (req, res) => {
+    try {
+        const sharks = await Shark.find();  // Fetch latest data
+        res.render('sharks', { sharks });
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
 module.exports = router;
