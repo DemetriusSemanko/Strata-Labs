@@ -8,6 +8,10 @@ exports.index = function (req, res) {
 exports.create = function (req, res) {
     var newShark = new Shark(req.body);
     console.log(req.body);
+    newShark.save()
+        .then(() => res.redirect('/sharks'))
+        .catch(err => res.status(500).send(err));
+    /*
     newShark.save(function (err) {
         if (err) {
             res.status(400).send('Unable to save shark to database');
@@ -15,6 +19,7 @@ exports.create = function (req, res) {
             res.redirect('/sharks/getshark');
         }
     });
+    */
 };
 
 exports.list = function (req, res) {
