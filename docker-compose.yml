@@ -1,33 +1,33 @@
+version: '3.8'
+
 services:
-    frontend:
-        image: nginx:latest
-        container_name: forum_frontend
-        volumes:
-            - ./frontend:/usr/share/nginx/html
-        ports:
-            - "8080:80"
-        depends_on:
-            - api
+  backend:
+    build: ./backend
+    container_name: nodejs-backend
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/mydb
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
 
-    api:
-        image: node:18
-        container_name: forum_api
-        working_dir: /app
-        volumes:
-            - ./api:/app
-        ports:
-            - "3000:3000"
-        depends_on:
-            - database
-        command: sh -c "npm install && npm start"
+  nginx:
+    image: nginx:latest
+    container_name: nginx-frontend
+    volumes:
+      - ./frontend/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
 
-    database:
-        image: mongo:4.4
-        container_name: forum_db
-        volumes:
-            - mongo_data:/data/db
-        ports:
-            - "27017:27017"
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
 
 volumes:
-    mongo_data:
+  mongodb_data:
