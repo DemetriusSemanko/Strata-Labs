@@ -2,3 +2,4 @@ resume
 technical diagram
 *.pdf
 *.md
+.gitignore
