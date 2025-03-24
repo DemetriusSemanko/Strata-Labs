@@ -1,0 +1,12 @@
+{
+  "name": "nodejs-backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
