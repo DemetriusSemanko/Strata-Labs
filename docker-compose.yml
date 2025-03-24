@@ -19,7 +19,7 @@ services:
             - "3000:3000"
         depends_on:
             - database
-        command: ["npm", "start"]
+        command: sh -c "npm install && npm start"
 
     database:
         image: mongo:4.4
