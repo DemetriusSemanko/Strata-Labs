@@ -1,27 +1,17 @@
-<!-- Basic Frontend Setup -->
-<!-- File: frontend/index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum Frontend</title>
+    <title>Anonymous Forum</title>
 </head>
 <body>
     <h1>Anonymous Forum</h1>
-    <p id="message">Loading...</p>
+    <textarea id="postContent" placeholder="Write something..."></textarea>
+    <button onclick="submitPost()">Post</button>
+    <h2>Posts</h2>
+    <ul id="posts"></ul>
 
-    <script>
-        fetch('http://forum_api:3000/api/message')
-            .then(response => response.json())
-            .then(response => {
-                document.getElementById('message').innerText = response.message;
-            })
-            .catch(error => {
-                document.getElementById('message').innerText = 'Failed to fetch API message';
-                console.error('Error:', error);
-            });
-    </script>
+    <script src="forum.js"></script>
 </body>
 </html>
