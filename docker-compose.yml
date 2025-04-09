@@ -30,6 +30,7 @@ services:
       - forum_network
     volumes:
       - mongo_data:/data/db
+      
   go_app:
     build:
       context: ./docker/
