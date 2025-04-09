@@ -8,7 +8,7 @@ RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ld
 
 FROM scratch
 
-EXPOSE 8080
+EXPOSE 8081
 WORKDIR /app
 COPY --from=build-env /go/src/app/app .
 ENTRYPOINT [ "./app" ]

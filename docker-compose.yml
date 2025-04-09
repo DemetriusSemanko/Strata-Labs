@@ -39,9 +39,9 @@ services:
     image: demetriussemanko/go_server:latest
     restart: always
     expose:
-      - 8080
+      - 8081
     ports:
-      - 8080:8080
+      - 8081:8081
       
   watchtower:
     image: containrrr/watchtower
