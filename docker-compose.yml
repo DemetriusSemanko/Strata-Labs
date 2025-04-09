@@ -30,7 +30,19 @@ services:
       - forum_network
     volumes:
       - mongo_data:/data/db
-
+  go_app:
+    build:
+      context: ./docker/
+      tags:
+        - "demetriussemanko/go_server:latest"
+    container_name: go_app
+    image: demetriussemanko/go_server:latest
+    restart: always
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+      
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
