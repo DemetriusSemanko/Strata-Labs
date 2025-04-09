@@ -34,9 +34,9 @@ services:
     build:
       context: ./docker/
       tags:
-        - "demetriussemanko/go_server:latest"
+        - "demetriussemanko/strata_go_server:latest"
     container_name: go_app
-    image: demetriussemanko/go_server:latest
+    image: demetriussemanko/strata_go_server:latest
     restart: always
     expose:
       - 8081
