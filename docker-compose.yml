@@ -25,19 +25,6 @@ services:
     volumes:
       - mongo_data:/data/db
       
-  go_app:
-    build:
-      context: ./docker/
-      tags:
-        - "demetriussemanko/strata_go_server:latest"
-    container_name: go_app
-    image: demetriussemanko/strata_go_server:latest
-    restart: always
-    expose:
-      - 8081
-    ports:
-      - 8081:8081
-      
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
@@ -45,7 +32,7 @@ services:
       - WATCHTOWER_CLEANUP=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 30 go_app
+    command: --interval 30
 
 volumes:
   mongo_data:
