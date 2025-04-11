@@ -8,8 +8,6 @@ services:
       - database
     environment:
       MONGO_URI: "mongodb://database:27017/forum"
-    networks:
-      - forum_network
 
   frontend:
     build: ./frontend
@@ -18,16 +16,12 @@ services:
       - "8080:80"
     depends_on:
       - api
-    networks:
-      - forum_network
 
   database:
     image: mongo:6
     container_name: forum_db
     ports:
       - "27017:27017"
-    networks:
-      - forum_network
     volumes:
       - mongo_data:/data/db
       
@@ -52,9 +46,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 30 go_app
-
-networks:
-  forum_network:
 
 volumes:
   mongo_data:
