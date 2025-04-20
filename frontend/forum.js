@@ -1,8 +1,8 @@
-// const API_URL = "http://localhost:3000/api";
-const API_URL = "http://forum-api:3000/api";
+//const API_URL = "http://localhost:3000/api";
 
 async function fetchPosts() {
-    const response = await fetch(`${API_URL}/posts`);
+    // const response = await fetch(`${API_URL}/posts`);
+    const response = await fetch(`api/posts`);
     const posts = await response.json();
     const postsList = document.getElementById("posts");
     postsList.innerHTML = "";
@@ -15,7 +15,8 @@ async function fetchPosts() {
 
 async function submitPost() {
     const content = document.getElementById("postContent").value;
-    await fetch(`${API_URL}/posts`, {
+    //await fetch(`${API_URL}/posts`, {
+    await fetch(`api/posts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content })

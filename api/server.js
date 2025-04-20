@@ -4,10 +4,11 @@ const app = express();
 const cors = require('cors');
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:8080" }));
+// app.use(cors({ origin: "http://localhost:8080" }));
+app.use(cors());
 
 
-const mongoUri = "mongodb://database:27017/forum";
+const mongoUri = "mongodb://forum-database:27017/forum";
 let db;
 
 MongoClient.connect(mongoUri)
