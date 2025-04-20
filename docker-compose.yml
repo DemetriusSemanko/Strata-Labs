@@ -1,7 +1,7 @@
 services:
   frontend:
     build: ./frontend
-    container_name: frontend
+    container_name: forum-frontend
     ports:
       - "8080:80"
     depends_on:
@@ -9,7 +9,7 @@ services:
       
   api:
     build: ./api
-    container_name: api
+    container_name: forum-api
     ports:
       - "3000:3000"
     depends_on:
@@ -17,7 +17,7 @@ services:
 
   database:
     image: mongo:6
-    container_name: database
+    container_name: forum-database
     ports:
       - "27017:27017"
     volumes:

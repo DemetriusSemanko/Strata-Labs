@@ -28,4 +28,5 @@ app.get('/api/posts', async (req, res) => {
     res.json(posts);
 });
 
-app.listen(3000, () => console.log("API running on port 3000"));
+app.listen(3000, '0.0.0.0', () => console.log("API running on port 3000"));
+// app.listen(3000, () => console.log("API running on port 3000"));

@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:3000/api";
+// const API_URL = "http://localhost:3000/api";
+const API_URL = "http://forum-api:3000/api";
 
 async function fetchPosts() {
     const response = await fetch(`${API_URL}/posts`);
