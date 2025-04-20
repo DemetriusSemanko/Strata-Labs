@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:8080" }));
 
 
-const mongoUri = process.env.MONGO_URI || "mongodb://database:27017/forum";
+const mongoUri = "mongodb://database:27017/forum";
 let db;
 
 MongoClient.connect(mongoUri)
