@@ -20,7 +20,6 @@ jobs:
     permissions:
       packages: write
       contents: read
-      attestations: write
       id-token: write
     steps:
       - name: Check out the repo
@@ -37,8 +36,8 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: |
-            secrets.DOCKER_USERNAME/strata-labs-frontend
-            secrets.DOCKER_USERNAME/strata-labs-api
+            secrets.DOCKER_USERNAME/forum-frontend:latest
+            secrets.DOCKER_USERNAME/forum-api:latest
 
       - name: Build and push Docker images
         id: push
