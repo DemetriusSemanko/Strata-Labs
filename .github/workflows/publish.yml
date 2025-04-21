@@ -18,9 +18,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - dockerfile: ./frontend
+          - dockerfile: ./frontend/Dockerfile
             image: demetriussemanko/forum-frontend
-          - dockerfile: ./api
+          - dockerfile: ./api/Dockerfile
             image: demetriussemanko/forum-frontend
 
     steps:
