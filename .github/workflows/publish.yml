@@ -37,13 +37,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      #- 
-      #  name: Extract metadata (tags, labels) for Docker
-      #  id: meta
-      #  uses: docker/metadata-action@v5
-      #  with:
-      #    images: ${{ matrix.image }}
-
       - 
         name: build and push api
         uses: docker/build-push-action@v6
