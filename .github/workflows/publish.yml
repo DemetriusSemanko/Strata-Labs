@@ -15,6 +15,14 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - dockerfile: ./frontend
+            image: demetriussemanko/forum-frontend
+          - dockerfile: ./api
+            image: demetriussemanko/forum-frontend
+
     steps:
       - 
         name: Checkout
@@ -26,6 +34,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ matrix.image }}
 
       - 
         name: Set up QEMU
@@ -39,15 +53,9 @@ jobs:
         name: build and push api
         uses: docker/build-push-action@v6
         with:
+          context: .
+          file: ${{ matrix.dockerfile }}
           push: true
-          matrix:
-            include:
-            - 
-              dockerfile: ./frontend
-              tags:
-                - demetriussemanko/forum-frontend:latest
-            - 
-              dockerfile: ./api
-              tags:
-                - demetriussemanko/api:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }
             
