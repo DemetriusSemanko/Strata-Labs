@@ -15,36 +15,35 @@ on:
       - "main"
 
 jobs:
-  push_to_registries:
-    name: Push Docker image to multiple registries
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-      id-token: write
+  deploy:
+    name: build && push image to Docker Hub
+    runs-on: self-hosted
+
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v2
 
       - name: docker login
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: |
-            secrets.DOCKER_USERNAME/forum-frontend:latest
-            secrets.DOCKER_USERNAME/forum-api:latest
-
-      - name: Build and push Docker images
+      - name: build and push api
         id: build-push-api
         uses: docker/build-push-action@v3
         with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          matrix:
+            dockerfile: ./frontend
+            push: true
+            tags:
+              - demetriussemanko/forum-frontend:latest
+            dockerfile: ./api
+            push: true
+            tags:
+              - demetriussemanko/api:latest
+            
