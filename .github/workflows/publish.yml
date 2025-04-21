@@ -11,8 +11,6 @@ name: ci
 
 on:
   push:
-    tags:
-      - 'latest'
 
 jobs:
   docker:
@@ -22,10 +20,10 @@ jobs:
         include:
           - dockerfile: ./frontend/Dockerfile
             context: ./frontend
-            image: demetriussemanko/forum-frontend
+            tags: demetriussemanko/forum-frontend:latest
           - dockerfile: ./api/Dockerfile
             context: ./api
-            image: demetriussemanko/forum-api
+            tags: demetriussemanko/forum-api:latest
 
     steps:
       - 
@@ -39,12 +37,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - 
-        name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ matrix.image }}
+      #- 
+      #  name: Extract metadata (tags, labels) for Docker
+      #  id: meta
+      #  uses: docker/metadata-action@v5
+      #  with:
+      #    images: ${{ matrix.image }}
 
       - 
         name: build and push api
@@ -53,5 +51,4 @@ jobs:
           context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ matrix.tags }}
