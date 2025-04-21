@@ -11,6 +11,8 @@ name: ci
 
 on:
   push:
+    tags:
+      - 'latest'
 
 jobs:
   docker:
@@ -20,10 +22,10 @@ jobs:
         include:
           - dockerfile: ./frontend/Dockerfile
             context: ./frontend
-            image: demetriussemanko/forum-frontend:latest
+            image: demetriussemanko/forum-frontend
           - dockerfile: ./api/Dockerfile
             context: ./api
-            image: demetriussemanko/forum-api:latest
+            image: demetriussemanko/forum-api
 
     steps:
       - 
@@ -36,20 +38,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - 
         name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ${{ matrix.image }}
-
-      #- 
-      #  name: Set up QEMU
-      #  uses: docker/setup-qemu-action@v3
-
-      #- 
-      #  name: setup docker buildx
-      #  uses: docker/setup-buildx-action@v3
 
       - 
         name: build and push api
