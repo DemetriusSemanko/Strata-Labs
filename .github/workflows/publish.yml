@@ -20,10 +20,10 @@ jobs:
         include:
           - dockerfile: ./frontend/Dockerfile
             context: ./frontend
-            image: demetriussemanko/forum-frontend
+            image: demetriussemanko/forum-frontend:latest
           - dockerfile: ./api/Dockerfile
             context: ./api
-            image: demetriussemanko/forum-api
+            image: demetriussemanko/forum-api:latest
 
     steps:
       - 

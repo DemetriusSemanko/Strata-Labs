@@ -1,9 +1,5 @@
 services:
   frontend:
-    #build: ./frontend
-    #tags:
-    #  - "demetriussemanko/forum-frontend:latest"
-    #container_name: forum-frontend
     build:
       context: ./frontend
       tags:
@@ -16,9 +12,6 @@ services:
       - api
       
   api:
-    #build: ./api
-    #tags:
-    #  - "demetriussemanko/forum-api:latest"
     build:
       context: ./api
       tags:
