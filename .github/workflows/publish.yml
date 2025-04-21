@@ -19,9 +19,11 @@ jobs:
       matrix:
         include:
           - dockerfile: ./frontend/Dockerfile
+            context: ./frontend
             image: demetriussemanko/forum-frontend
           - dockerfile: ./api/Dockerfile
-            image: demetriussemanko/forum-frontend
+            context: ./api
+            image: demetriussemanko/forum-api
 
     steps:
       - 
@@ -53,7 +55,7 @@ jobs:
         name: build and push api
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
