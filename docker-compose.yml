@@ -33,9 +33,7 @@ services:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 30
-    depends_on:
-      - frontend
+    command: --interval 60
 
 volumes:
   mongo_data:
