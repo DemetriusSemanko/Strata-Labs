@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Forum</title>
-    <link rel="stylesheet" href="custom.css">
+    <title>Strata Labs Forum</title>
 </head>
 <body>
-    <h1>Anonymous Forum by Strata Labs</h1>
-    <textarea id="postContent" placeholder="Write something..."></textarea>
-    <button onclick="submitPost()">Post</button>
-    <h2>Posts</h2>
-    <ul id="posts"></ul>
+    <h2>Create New Thread</h2>
+    <input id="newTitle" placeholder="Title"><br>
+    <textarea id="newBody" placeholder="Body"></textarea><br>
+    <button onclick="createThread()">Post Thread</button>
 
     <script src="forum.js"></script>
+
+    <h1>Forum Threads</h1>
+    <ul id="threadList"></ul>
 </body>
 </html>

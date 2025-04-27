@@ -22,11 +22,12 @@ services:
       - database
 
   database:
-    image: mongo:6
+    image: mongo:6.0.22
     container_name: forum-database
     volumes:
       - mongo_data:/data/db
-
+      
+  # Comment out watchtower when on dev branch
   watchtower:
     image: containrrr/watchtower
     volumes:
