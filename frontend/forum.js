@@ -1,8 +1,8 @@
-const apiBase = `${window.location.protocol}//${window.location.hostname}:3000`;
+// const apiBase = `${window.location.protocol}//${window.location.hostname}:3000`;
 // const apiBase = `http://forum-api:3000`;
 
 async function fetchThreads() {
-    const res = await fetch(`${apiBase}/api/threads`);
+    const res = await fetch(`/api/threads`);
     const threads = await res.json();
     const threadList = document.getElementById("threadList");
     threadList.innerHTML = threads.map(thread =>
@@ -15,7 +15,7 @@ async function createThread() {
     const body = document.getElementById("newBody").value.trim();
     if (!title || !body) return;
 
-    await fetch(`${apiBase}/api/threads`, {
+    await fetch(`/api/threads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, body }),

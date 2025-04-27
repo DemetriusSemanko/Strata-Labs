@@ -55,9 +55,9 @@ app.get("/api/threads/:id/replies", async (req, res) => {
 app.post("/api/threads/:id/replies", async (req, res) => {
     const { username, body } = req.body;
     const reply = new Reply({
-    threadId: req.params.id,
-    username,
-    body,
+        threadId: req.params.id,
+        username,
+        body,
     });
     await reply.save();
     res.status(201).json(reply);
