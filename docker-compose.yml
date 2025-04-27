@@ -29,11 +29,11 @@ services:
     volumes:
       - mongo_data:/data/db
 
-  watchtower:
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 60
+  #watchtower:
+  #  image: containrrr/watchtower
+  #  volumes:
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #  command: --interval 60
 
 volumes:
   mongo_data:

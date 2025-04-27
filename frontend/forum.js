@@ -1,27 +1,26 @@
-//const API_URL = "http://localhost:3000/api";
+const apiBase = `${window.location.protocol}//${window.location.hostname}:3000`;
+// const apiBase = `http://forum-api:3000`;
 
-async function fetchPosts() {
-    // const response = await fetch(`${API_URL}/posts`);
-    const response = await fetch(`api/posts`);
-    const posts = await response.json();
-    const postsList = document.getElementById("posts");
-    postsList.innerHTML = "";
-    posts.forEach(post => {
-        const li = document.createElement("li");
-        li.textContent = post.content;
-        postsList.appendChild(li);
-    });
+async function fetchThreads() {
+    const res = await fetch(`${apiBase}/api/threads`);
+    const threads = await res.json();
+    const threadList = document.getElementById("threadList");
+    threadList.innerHTML = threads.map(thread =>
+        `<li><a href="thread.html?id=${thread._id}">${thread.title}</a></li>`
+    ).join("");
 }
 
-async function submitPost() {
-    const content = document.getElementById("postContent").value;
-    //await fetch(`${API_URL}/posts`, {
-    await fetch(`api/posts`, {
+async function createThread() {
+    const title = document.getElementById("newTitle").value.trim();
+    const body = document.getElementById("newBody").value.trim();
+    if (!title || !body) return;
+
+    await fetch(`${apiBase}/api/threads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content })
+        body: JSON.stringify({ title, body }),
     });
-    fetchPosts();
+    location.reload();
 }
 
-window.onload = fetchPosts;
+fetchThreads();
