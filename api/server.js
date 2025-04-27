@@ -2,6 +2,7 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const app = express();
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 app.use(express.json());
 // app.use(cors({ origin: "http://localhost:8080" }));
@@ -17,6 +18,17 @@ MongoClient.connect(mongoUri)
     console.log("Connected to MongoDB");
   })
   .catch(err => console.error("MongoDB connection error:", err));
+
+const postSchema = new mongoose.Schema({
+  name: String,
+  post: String
+});
+
+const threadSchema = new mongoose.Schema({
+  title: String,
+  body: String
+});
+
 
 app.post('/api/posts', async (req, res) => {
     if (!req.body.content) return res.status(400).json({ error: "Content is required" });
