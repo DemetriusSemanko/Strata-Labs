@@ -34,6 +34,7 @@ app.get("/api/threads", async (req, res) => {
     res.json(threads);
 });
 
+// Post a thread
 app.post("/api/threads", async (req, res) => {
     const { title, body } = req.body;
     const thread = new Thread({ title, body });
@@ -41,17 +42,20 @@ app.post("/api/threads", async (req, res) => {
     res.status(201).json(thread);
 });
 
+// Get specific thread
 app.get("/api/threads/:id", async (req, res) => {
     const thread = await Thread.findById(req.params.id);
     if (!thread) return res.status(404).json({ error: "Thread not found" });
     res.json(thread);
 });
 
+// Get all replies from a specific thread
 app.get("/api/threads/:id/replies", async (req, res) => {
     const replies = await Reply.find({ threadId: req.params.id }).sort({ createdAt: 1 });
     res.json(replies);
 });
 
+// Post a reply to a specific thread
 app.post("/api/threads/:id/replies", async (req, res) => {
     const { username, body } = req.body;
     const reply = new Reply({
@@ -63,6 +67,7 @@ app.post("/api/threads/:id/replies", async (req, res) => {
     res.status(201).json(reply);
 });
 
+// Listen
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`API running on http://localhost:${PORT}`);
 });
