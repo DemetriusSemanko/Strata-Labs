@@ -28,11 +28,11 @@ services:
       - mongo_data:/data/db
       
   # Comment out watchtower when on dev branch
-  watchtower:
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 60
+  #watchtower:
+  #  image: containrrr/watchtower
+  #  volumes:
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #  command: --interval 60
 
 volumes:
   mongo_data:

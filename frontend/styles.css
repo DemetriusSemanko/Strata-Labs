@@ -1,5 +1,7 @@
-.center {
-    margin: auto;
-    width: 100%;
-    padding: 10px;
+h1, h2, h3 {
+    width:500px;
+    margin: 0 auto;
+    background: gray;
+    text-align: center;
+    color: brown;
 }
